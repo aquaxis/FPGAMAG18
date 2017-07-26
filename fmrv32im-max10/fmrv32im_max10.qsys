@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags=""
+   categories="System" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element axi_lite_master
+   {
+      datum _sortIndex
+      {
+         value = "5";
+         type = "int";
+      }
+   }
+   element axi_master
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
+   element cache
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+   }
+   element clk
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+   element dbussel
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
+      }
+   }
+   element fmrv32im
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+   element fmrv32im_max10
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element fmrv32im_max10
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element fmrv32im_max10
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element fmrv32im_max10
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element fmrv32im_max10
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element fmrv32im_max10
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element fmrv32im_max10
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element fmrv32im_max10
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element fmrv32im_max10
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element fmrv32im_max10
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element plic
+   {
+      datum _sortIndex
+      {
+         value = "6";
+         type = "int";
+      }
+   }
+   element timer
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
+   element uart_and_gpio
+   {
+      datum _sortIndex
+      {
+         value = "8";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="device" value="10M08SAE144C8G" />
+ <parameter name="deviceFamily" value="MAX 10" />
+ <parameter name="deviceSpeedGrade" value="8" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="hideFromIPCatalog" value="false" />
+ <parameter name="lockedInterfaceDefinition" value="" />
+ <parameter name="maxAdditionalLatency" value="1" />
+ <parameter name="projectName" value="max10.qpf" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="0" />
+ <parameter name="testBenchDutName" value="" />
+ <parameter name="timeStamp" value="0" />
+ <parameter name="useTestBenchNamingPattern" value="false" />
+ <instanceScript></instanceScript>
+ <interface name="clk" internal="clk.clk_in" type="clock" dir="end" />
+ <interface name="reset" internal="clk.clk_in_reset" type="reset" dir="end" />
+ <interface
+   name="uart_gpio"
+   internal="uart_and_gpio.gpio"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="uart_uart"
+   internal="uart_and_gpio.UART"
+   type="conduit"
+   dir="end" />
+ <module name="axi_lite_master" kind="axilm" version="1.0" enabled="1" />
+ <module name="axi_master" kind="axim" version="1.0" enabled="1" />
+ <module name="cache" kind="cache" version="1.0" enabled="1">
+  <parameter name="INTEL" value="1" />
+  <parameter name="MEM_FILE">/home/hidemi/workspace/FPGAMAG18/FPGA/romdata/max10.mif</parameter>
+  <parameter name="OSRAM" value="0" />
+ </module>
+ <module name="clk" kind="clock_source" version="17.0" enabled="1">
+  <parameter name="clockFrequency" value="48000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+  <parameter name="inputClockFrequency" value="0" />
+  <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module name="dbussel" kind="dbussel" version="1.0" enabled="1" />
+ <module name="fmrv32im" kind="fmrv32im" version="1.0" enabled="1" />
+ <module name="plic" kind="plic" version="1.0" enabled="1" />
+ <module name="timer" kind="timer" version="1.0" enabled="1" />
+ <module name="uart_and_gpio" kind="uart" version="1.0" enabled="1" />
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="axi_lite_master.altera_axi4lite_master"
+   end="uart_and_gpio.altera_axi4lite_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection kind="clock" version="17.0" start="clk.clk" end="fmrv32im.clock" />
+ <connection kind="clock" version="17.0" start="clk.clk" end="cache.clock" />
+ <connection kind="clock" version="17.0" start="clk.clk" end="axi_master.clock" />
+ <connection
+   kind="clock"
+   version="17.0"
+   start="clk.clk"
+   end="axi_lite_master.clock" />
+ <connection kind="clock" version="17.0" start="clk.clk" end="plic.clock" />
+ <connection kind="clock" version="17.0" start="clk.clk" end="timer.clock" />
+ <connection kind="clock" version="17.0" start="clk.clk" end="uart_and_gpio.clock" />
+ <connection kind="clock" version="17.0" start="clk.clk" end="dbussel.clock" />
+ <connection kind="conduit" version="17.0" start="dbussel.C_MEM" end="cache.D_MEM">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="17.0"
+   start="axi_lite_master.D_BUS"
+   end="dbussel.PERIPHERAL">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="17.0"
+   start="fmrv32im.D_MEM"
+   end="dbussel.D_MEM">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="17.0"
+   start="fmrv32im.I_MEM"
+   end="cache.I_MEM">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection kind="conduit" version="17.0" start="dbussel.PLIC" end="plic.SYS_BUS">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="17.0"
+   start="cache.REQ_BUS"
+   end="axi_master.REQ_BUS">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="17.0"
+   start="dbussel.TIMER"
+   end="timer.SYS_BUS">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="17.0"
+   start="plic.int_out"
+   end="fmrv32im.ext_interrupt">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="17.0"
+   start="uart_and_gpio.interrupt"
+   end="plic.int_in">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="17.0"
+   start="fmrv32im.timer_expired"
+   end="timer.expired">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk.clk_reset"
+   end="fmrv32im.reset" />
+ <connection kind="reset" version="17.0" start="clk.clk_reset" end="cache.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk.clk_reset"
+   end="axi_master.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk.clk_reset"
+   end="axi_lite_master.reset" />
+ <connection kind="reset" version="17.0" start="clk.clk_reset" end="plic.reset" />
+ <connection kind="reset" version="17.0" start="clk.clk_reset" end="timer.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk.clk_reset"
+   end="uart_and_gpio.reset" />
+ <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
+ <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
+ <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />
+ <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="1" />
+</system>

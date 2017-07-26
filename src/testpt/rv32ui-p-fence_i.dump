@@ -1,0 +1,173 @@
+
+rv32ui-p-fence_i:     ファイル形式 elf32-littleriscv
+
+
+セクション .text.init の逆アセンブル:
+
+00000000 <_start>:
+   0:	04c0006f          	j	4c <reset_vector>
+
+00000004 <trap_vector>:
+   4:	34202f73          	csrr	t5,mcause
+   8:	00800f93          	li	t6,8
+   c:	03ff0a63          	beq	t5,t6,40 <write_tohost>
+  10:	00900f93          	li	t6,9
+  14:	03ff0663          	beq	t5,t6,40 <write_tohost>
+  18:	00b00f93          	li	t6,11
+  1c:	03ff0263          	beq	t5,t6,40 <write_tohost>
+  20:	00000f17          	auipc	t5,0x0
+  24:	fe0f0f13          	addi	t5,t5,-32 # 0 <_start>
+  28:	000f0463          	beqz	t5,30 <trap_vector+0x2c>
+  2c:	000f0067          	jr	t5
+  30:	34202f73          	csrr	t5,mcause
+  34:	000f5463          	bgez	t5,3c <handle_exception>
+  38:	0040006f          	j	3c <handle_exception>
+
+0000003c <handle_exception>:
+  3c:	539e6e13          	ori	t3,t3,1337
+
+00000040 <write_tohost>:
+  40:	00000f17          	auipc	t5,0x0
+  44:	7dcf2023          	sw	t3,1984(t5) # 800 <tohost>
+  48:	ff9ff06f          	j	40 <write_tohost>
+
+0000004c <reset_vector>:
+  4c:	f1402573          	csrr	a0,mhartid
+  50:	00051063          	bnez	a0,50 <reset_vector+0x4>
+  54:	30102573          	csrr	a0,misa
+  58:	00055863          	bgez	a0,68 <reset_vector+0x1c>
+  5c:	0ff0000f          	fence
+  60:	00100e13          	li	t3,1
+  64:	00000073          	ecall
+  68:	00000e13          	li	t3,0
+  6c:	00000297          	auipc	t0,0x0
+  70:	f9828293          	addi	t0,t0,-104 # 4 <trap_vector>
+  74:	30529073          	csrw	mtvec,t0
+  78:	30205073          	csrwi	medeleg,0
+  7c:	30305073          	csrwi	mideleg,0
+  80:	30405073          	csrwi	mie,0
+  84:	00000297          	auipc	t0,0x0
+  88:	f7c28293          	addi	t0,t0,-132 # 0 <_start>
+  8c:	00028c63          	beqz	t0,a4 <reset_vector+0x58>
+  90:	10529073          	csrw	stvec,t0
+  94:	1ab00293          	li	t0,427
+  98:	30229073          	csrw	medeleg,t0
+  9c:	30202373          	csrr	t1,medeleg
+  a0:	f8629ee3          	bne	t0,t1,3c <handle_exception>
+  a4:	30005073          	csrwi	mstatus,0
+  a8:	00000297          	auipc	t0,0x0
+  ac:	01428293          	addi	t0,t0,20 # bc <reset_vector+0x70>
+  b0:	34129073          	csrw	mepc,t0
+  b4:	f1402573          	csrr	a0,mhartid
+  b8:	30200073          	mret
+  bc:	06f00693          	li	a3,111
+  c0:	00001517          	auipc	a0,0x1
+  c4:	b4051503          	lh	a0,-1216(a0) # c00 <begin_signature>
+  c8:	00001597          	auipc	a1,0x1
+  cc:	b3a59583          	lh	a1,-1222(a1) # c02 <begin_signature+0x2>
+  d0:	00000013          	nop
+  d4:	00000013          	nop
+  d8:	00000013          	nop
+  dc:	00000013          	nop
+  e0:	00000013          	nop
+  e4:	00000013          	nop
+  e8:	00000013          	nop
+  ec:	00000013          	nop
+  f0:	00000013          	nop
+  f4:	00000013          	nop
+  f8:	00000013          	nop
+  fc:	00000013          	nop
+ 100:	00000297          	auipc	t0,0x0
+ 104:	00a29a23          	sh	a0,20(t0) # 114 <reset_vector+0xc8>
+ 108:	00000297          	auipc	t0,0x0
+ 10c:	00b29723          	sh	a1,14(t0) # 116 <reset_vector+0xca>
+ 110:	0000100f          	fence.i
+ 114:	0de68693          	addi	a3,a3,222
+
+00000118 <test_2>:
+ 118:	00000013          	nop
+ 11c:	1bc00e93          	li	t4,444
+ 120:	00200e13          	li	t3,2
+ 124:	07d69a63          	bne	a3,t4,198 <fail>
+ 128:	06400713          	li	a4,100
+ 12c:	fff70713          	addi	a4,a4,-1
+ 130:	fe071ee3          	bnez	a4,12c <test_2+0x14>
+ 134:	00000297          	auipc	t0,0x0
+ 138:	04a29623          	sh	a0,76(t0) # 180 <test_2+0x68>
+ 13c:	00000297          	auipc	t0,0x0
+ 140:	04b29323          	sh	a1,70(t0) # 182 <test_2+0x6a>
+ 144:	0000100f          	fence.i
+ 148:	00000013          	nop
+ 14c:	00000013          	nop
+ 150:	00000013          	nop
+ 154:	00000013          	nop
+ 158:	00000013          	nop
+ 15c:	00000013          	nop
+ 160:	00000013          	nop
+ 164:	00000013          	nop
+ 168:	00000013          	nop
+ 16c:	00000013          	nop
+ 170:	00000013          	nop
+ 174:	00000013          	nop
+ 178:	00000013          	nop
+ 17c:	00000013          	nop
+ 180:	22b68693          	addi	a3,a3,555
+
+00000184 <test_3>:
+ 184:	00000013          	nop
+ 188:	30900e93          	li	t4,777
+ 18c:	00300e13          	li	t3,3
+ 190:	01d69463          	bne	a3,t4,198 <fail>
+ 194:	01c01c63          	bne	zero,t3,1ac <pass>
+
+00000198 <fail>:
+ 198:	0ff0000f          	fence
+ 19c:	000e0063          	beqz	t3,19c <fail+0x4>
+ 1a0:	001e1e13          	slli	t3,t3,0x1
+ 1a4:	001e6e13          	ori	t3,t3,1
+ 1a8:	00000073          	ecall
+
+000001ac <pass>:
+ 1ac:	0ff0000f          	fence
+ 1b0:	00100e13          	li	t3,1
+ 1b4:	00000073          	ecall
+ 1b8:	c0001073          	unimp
+ 1bc:	0000                	unimp
+ 1be:	0000                	unimp
+ 1c0:	0000                	unimp
+ 1c2:	0000                	unimp
+ 1c4:	0000                	unimp
+ 1c6:	0000                	unimp
+ 1c8:	0000                	unimp
+ 1ca:	0000                	unimp
+ 1cc:	0000                	unimp
+ 1ce:	0000                	unimp
+ 1d0:	0000                	unimp
+ 1d2:	0000                	unimp
+ 1d4:	0000                	unimp
+ 1d6:	0000                	unimp
+ 1d8:	0000                	unimp
+ 1da:	0000                	unimp
+ 1dc:	0000                	unimp
+ 1de:	0000                	unimp
+ 1e0:	0000                	unimp
+ 1e2:	0000                	unimp
+ 1e4:	0000                	unimp
+ 1e6:	0000                	unimp
+ 1e8:	0000                	unimp
+ 1ea:	0000                	unimp
+ 1ec:	0000                	unimp
+ 1ee:	0000                	unimp
+ 1f0:	0000                	unimp
+ 1f2:	0000                	unimp
+
+セクション .data の逆アセンブル:
+
+00000c00 <begin_signature>:
+ c00:	14d68693          	addi	a3,a3,333
+ c04:	0000                	unimp
+ c06:	0000                	unimp
+ c08:	0000                	unimp
+ c0a:	0000                	unimp
+ c0c:	0000                	unimp
+ c0e:	0000                	unimp

@@ -1,0 +1,25 @@
+{
+   guistr: "# # String gsaved with Nlview 6.6.8  2016-12-21 bk=1.3817 VDI=40 GEI=35 GUI=JA:1.6
+#  -string -flagsOSRD
+preplace port UART -pg 1 -y 200 -defaultsOSRD
+preplace port CLK100MHZ -pg 1 -y 30 -defaultsOSRD
+preplace port GPIO -pg 1 -y 180 -defaultsOSRD
+preplace inst uart_and_gpio -pg 1 -lvl 4 -y 200 -defaultsOSRD
+preplace inst axi_lite_master -pg 1 -lvl 3 -y 180 -defaultsOSRD
+preplace inst High -pg 1 -lvl 1 -y 80 -defaultsOSRD
+preplace inst fmrv32im_core -pg 1 -lvl 2 -y 140 -defaultsOSRD
+preplace inst concat -pg 1 -lvl 1 -y 160 -defaultsOSRD
+preplace netloc CLK_1 1 0 4 NJ 30 230 60 490 250 770
+preplace netloc uart_and_gpio_UART 1 4 1 NJ
+preplace netloc High_dout 1 1 3 220 210 500 260 760
+preplace netloc uart_and_gpio_INTERRUPT 1 0 5 20 20 NJ 20 NJ 20 NJ 20 990
+preplace netloc uart_and_gpio_GPIO 1 4 1 NJ
+preplace netloc axi_lite_master_M_AXI 1 3 1 N
+preplace netloc fmrv32im_core_PERIPHERAL 1 2 1 N
+preplace netloc concat_dout 1 1 1 NJ
+levelinfo -pg 1 0 120 360 630 880 1010 -top 0 -bot 270
+",
+}
+{
+   da_bram_cntlr_cnt: "1",
+}

@@ -1,0 +1,1110 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jul  5 01:27:14 2017" VIVADOVERSION="2017.2">
+
+  <SYSTEMINFO ARCH="artix7" DEVICE="7a35ti" NAME="fmrv32im_artya7" PACKAGE="csg324" SPEEDGRADE="-1L"/>
+
+  <EXTERNALPORTS>
+    <PORT DIR="O" LEFT="31" NAME="GPIO_o" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="I" LEFT="31" NAME="GPIO_i" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="O" LEFT="31" NAME="GPIO_ot" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="O" NAME="UART_tx" SIGIS="undef"/>
+    <PORT DIR="I" NAME="UART_rx" SIGIS="undef"/>
+    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="CLK100MHZ" SIGIS="clk" SIGNAME="External_Ports_CLK100MHZ">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axi_lite_master" PORT="CLK"/>
+        <CONNECTION INSTANCE="fmrv32im_core_plic" PORT="CLK"/>
+        <CONNECTION INSTANCE="fmrv32im_core_timer" PORT="CLK"/>
+        <CONNECTION INSTANCE="fmrv32im_core_cache" PORT="CLK"/>
+        <CONNECTION INSTANCE="fmrv32im_core_fmrv32im" PORT="CLK"/>
+        <CONNECTION INSTANCE="uart_and_gpio" PORT="CLK"/>
+      </CONNECTIONS>
+    </PORT>
+  </EXTERNALPORTS>
+
+  <EXTERNALINTERFACES>
+    <BUSINTERFACE BUSNAME="uart_and_gpio_GPIO" NAME="GPIO" TYPE="INITIATOR">
+      <PORTMAPS>
+        <PORTMAP LOGICAL="O" PHYSICAL="GPIO_o"/>
+        <PORTMAP LOGICAL="I" PHYSICAL="GPIO_i"/>
+        <PORTMAP LOGICAL="OT" PHYSICAL="GPIO_ot"/>
+      </PORTMAPS>
+    </BUSINTERFACE>
+    <BUSINTERFACE BUSNAME="uart_and_gpio_UART" NAME="UART" TYPE="INITIATOR">
+      <PORTMAPS>
+        <PORTMAP LOGICAL="TX" PHYSICAL="UART_tx"/>
+        <PORTMAP LOGICAL="RX" PHYSICAL="UART_rx"/>
+      </PORTMAPS>
+    </BUSINTERFACE>
+  </EXTERNALINTERFACES>
+
+  <MODULES>
+    <MODULE FULLNAME="/High" HWVERSION="1.1" INSTANCE="High" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="CONST_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="CONST_VAL" VALUE="0x1"/>
+        <PARAMETER NAME="Component_Name" VALUE="fmrv32im_artya7_xlconstant_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="0" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="High_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="RST_N"/>
+            <CONNECTION INSTANCE="fmrv32im_core_plic" PORT="RST_N"/>
+            <CONNECTION INSTANCE="fmrv32im_core_timer" PORT="RST_N"/>
+            <CONNECTION INSTANCE="fmrv32im_core_cache" PORT="RST_N"/>
+            <CONNECTION INSTANCE="fmrv32im_core_fmrv32im" PORT="RST_N"/>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="RST_N"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE FULLNAME="/axi_lite_master" HWVERSION="1.0" INSTANCE="axi_lite_master" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="fmrv32im_axilm" VLNV="user.org:user:fmrv32im_axilm:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="fmrv32im_artya7_fmrv32im_axilm_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="RST_N" SIGIS="rst" SIGNAME="High_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="High" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="CLK" SIGIS="clk" SIGNAME="External_Ports_CLK100MHZ">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="CLK100MHZ"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M_AXI_AWADDR" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_AWADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_AWADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M_AXI_AWCACHE" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_AWCACHE">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_AWCACHE"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="M_AXI_AWPROT" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_AWPROT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_AWPROT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M_AXI_AWVALID" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_AWVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_AWVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M_AXI_AWREADY" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_AWREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_AWREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M_AXI_WDATA" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_WDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_WDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M_AXI_WSTRB" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_WSTRB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_WSTRB"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M_AXI_WVALID" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_WVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_WVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M_AXI_WREADY" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_WREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_WREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M_AXI_BVALID" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_BVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_BVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M_AXI_BREADY" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_BREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_BREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M_AXI_BRESP" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_BRESP">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_BRESP"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M_AXI_ARADDR" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_ARADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_ARADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M_AXI_ARCACHE" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_ARCACHE">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_ARCACHE"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="M_AXI_ARPROT" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_ARPROT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_ARPROT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M_AXI_ARVALID" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_ARVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_ARVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M_AXI_ARREADY" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_ARREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_ARREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="M_AXI_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_RDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_RDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M_AXI_RRESP" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_RRESP">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_RRESP"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M_AXI_RVALID" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_RVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_RVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M_AXI_RREADY" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_RREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="S_AXI_RREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="BUS_WAIT" SIGIS="undef" SIGNAME="axi_lite_master_BUS_WAIT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="PERIPHERAL_BUS_WAIT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="BUS_ENA" SIGIS="undef" SIGNAME="axi_lite_master_BUS_ENA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="PERIPHERAL_BUS_ENA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="BUS_WSTB" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_BUS_WSTB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="PERIPHERAL_BUS_WSTB"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="BUS_ADDR" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_BUS_ADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="PERIPHERAL_BUS_ADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="BUS_WDATA" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_BUS_WDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="PERIPHERAL_BUS_WDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="BUS_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_BUS_RDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="PERIPHERAL_BUS_RDATA"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="axi_lite_master_M_AXI" DATAWIDTH="32" NAME="M_AXI" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
+          <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+          <PARAMETER NAME="PROTOCOL" VALUE="AXI4LITE"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
+          <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
+          <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="ARUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="WUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="RUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="BUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="READ_WRITE_MODE" VALUE="READ_WRITE"/>
+          <PARAMETER NAME="HAS_BURST" VALUE="0"/>
+          <PARAMETER NAME="HAS_LOCK" VALUE="0"/>
+          <PARAMETER NAME="HAS_PROT" VALUE="1"/>
+          <PARAMETER NAME="HAS_CACHE" VALUE="1"/>
+          <PARAMETER NAME="HAS_QOS" VALUE="0"/>
+          <PARAMETER NAME="HAS_REGION" VALUE="0"/>
+          <PARAMETER NAME="HAS_WSTRB" VALUE="1"/>
+          <PARAMETER NAME="HAS_BRESP" VALUE="1"/>
+          <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
+          <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
+          <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="1"/>
+          <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="1"/>
+          <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="1"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="fmrv32im_artya7_CLK100MHZ"/>
+          <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
+          <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
+          <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
+          <PARAMETER NAME="WUSER_BITS_PER_BYTE" VALUE="0"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="AWADDR" PHYSICAL="M_AXI_AWADDR"/>
+            <PORTMAP LOGICAL="AWCACHE" PHYSICAL="M_AXI_AWCACHE"/>
+            <PORTMAP LOGICAL="AWPROT" PHYSICAL="M_AXI_AWPROT"/>
+            <PORTMAP LOGICAL="AWVALID" PHYSICAL="M_AXI_AWVALID"/>
+            <PORTMAP LOGICAL="AWREADY" PHYSICAL="M_AXI_AWREADY"/>
+            <PORTMAP LOGICAL="WDATA" PHYSICAL="M_AXI_WDATA"/>
+            <PORTMAP LOGICAL="WSTRB" PHYSICAL="M_AXI_WSTRB"/>
+            <PORTMAP LOGICAL="WVALID" PHYSICAL="M_AXI_WVALID"/>
+            <PORTMAP LOGICAL="WREADY" PHYSICAL="M_AXI_WREADY"/>
+            <PORTMAP LOGICAL="BRESP" PHYSICAL="M_AXI_BRESP"/>
+            <PORTMAP LOGICAL="BVALID" PHYSICAL="M_AXI_BVALID"/>
+            <PORTMAP LOGICAL="BREADY" PHYSICAL="M_AXI_BREADY"/>
+            <PORTMAP LOGICAL="ARADDR" PHYSICAL="M_AXI_ARADDR"/>
+            <PORTMAP LOGICAL="ARCACHE" PHYSICAL="M_AXI_ARCACHE"/>
+            <PORTMAP LOGICAL="ARPROT" PHYSICAL="M_AXI_ARPROT"/>
+            <PORTMAP LOGICAL="ARVALID" PHYSICAL="M_AXI_ARVALID"/>
+            <PORTMAP LOGICAL="ARREADY" PHYSICAL="M_AXI_ARREADY"/>
+            <PORTMAP LOGICAL="RDATA" PHYSICAL="M_AXI_RDATA"/>
+            <PORTMAP LOGICAL="RRESP" PHYSICAL="M_AXI_RRESP"/>
+            <PORTMAP LOGICAL="RVALID" PHYSICAL="M_AXI_RVALID"/>
+            <PORTMAP LOGICAL="RREADY" PHYSICAL="M_AXI_RREADY"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="fmrv32im_core_dbussel_PERIPHERAL" NAME="PERIPHERAL_BUS" TYPE="TARGET" VLNV="user.org:user:PERIPHERAL_BUS:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="BUS_WAIT" PHYSICAL="BUS_WAIT"/>
+            <PORTMAP LOGICAL="BUS_ENA" PHYSICAL="BUS_ENA"/>
+            <PORTMAP LOGICAL="BUS_WSTB" PHYSICAL="BUS_WSTB"/>
+            <PORTMAP LOGICAL="BUS_ADDR" PHYSICAL="BUS_ADDR"/>
+            <PORTMAP LOGICAL="BUS_WDATA" PHYSICAL="BUS_WDATA"/>
+            <PORTMAP LOGICAL="BUS_RDATA" PHYSICAL="BUS_RDATA"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+      <MEMORYMAP/>
+      <PERIPHERALS>
+        <PERIPHERAL INSTANCE="uart_and_gpio"/>
+      </PERIPHERALS>
+    </MODULE>
+    <MODULE FULLNAME="/concat" HWVERSION="2.1" INSTANCE="concat" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconcat" VLNV="xilinx.com:ip:xlconcat:2.1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="IN0_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN1_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN2_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN3_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN4_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN5_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN6_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN7_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN8_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN9_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN10_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN11_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN12_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN13_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN14_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN15_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN16_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN17_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN18_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN19_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN20_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN21_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN22_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN23_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN24_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN25_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN26_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN27_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN28_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN29_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN30_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="IN31_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="dout_width" VALUE="1"/>
+        <PARAMETER NAME="NUM_PORTS" VALUE="1"/>
+        <PARAMETER NAME="Component_Name" VALUE="fmrv32im_artya7_xlconcat_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="0" NAME="In0" RIGHT="0" SIGIS="undef" SIGNAME="uart_and_gpio_INTERRUPT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="uart_and_gpio" PORT="INTERRUPT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="concat_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_plic" PORT="INT_IN"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE FULLNAME="/fmrv32im_core/cache" HWVERSION="1.0" INSTANCE="fmrv32im_core_cache" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="fmrv32im_cache" VLNV="user.org:user:fmrv32im_cache:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="MEM_FILE" VALUE="/home/hidemi/workspace/FPGAMAG18/FPGA/romdata/artya7.hex"/>
+        <PARAMETER NAME="INTEL" VALUE="0"/>
+        <PARAMETER NAME="OSRAM" VALUE="0"/>
+        <PARAMETER NAME="Component_Name" VALUE="fmrv32im_artya7_fmrv32im_cache_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="RST_N" SIGIS="rst" SIGNAME="High_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="High" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="CLK" SIGIS="clk" SIGNAME="External_Ports_CLK100MHZ">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="CLK100MHZ"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="I_MEM_WAIT" SIGIS="undef" SIGNAME="fmrv32im_core_cache_I_MEM_WAIT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_fmrv32im" PORT="I_MEM_WAIT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="I_MEM_ENA" SIGIS="undef" SIGNAME="fmrv32im_core_cache_I_MEM_ENA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_fmrv32im" PORT="I_MEM_ENA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="I_MEM_ADDR" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_cache_I_MEM_ADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_fmrv32im" PORT="I_MEM_ADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="I_MEM_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_cache_I_MEM_RDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_fmrv32im" PORT="I_MEM_RDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="I_MEM_BADMEM_EXCPT" SIGIS="undef" SIGNAME="fmrv32im_core_cache_I_MEM_BADMEM_EXCPT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_fmrv32im" PORT="I_MEM_BADMEM_EXCPT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="D_MEM_WAIT" SIGIS="undef" SIGNAME="fmrv32im_core_cache_D_MEM_WAIT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="C_MEM_WAIT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="D_MEM_ENA" SIGIS="undef" SIGNAME="fmrv32im_core_cache_D_MEM_ENA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="C_MEM_ENA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="D_MEM_WSTB" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_cache_D_MEM_WSTB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="C_MEM_WSTB"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="D_MEM_ADDR" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_cache_D_MEM_ADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="C_MEM_ADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="D_MEM_WDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_cache_D_MEM_WDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="C_MEM_WDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="D_MEM_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_cache_D_MEM_RDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="C_MEM_RDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="D_MEM_BADMEM_EXCPT" SIGIS="undef" SIGNAME="fmrv32im_core_cache_D_MEM_BADMEM_EXCPT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="C_MEM_BADMEM_EXCPT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="WR_REQ_START" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="31" NAME="WR_REQ_ADDR" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="15" NAME="WR_REQ_LEN" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" NAME="WR_REQ_READY" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="9" NAME="WR_REQ_MEM_ADDR" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="31" NAME="WR_REQ_MEM_WDATA" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" NAME="RD_REQ_START" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="31" NAME="RD_REQ_ADDR" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="15" NAME="RD_REQ_LEN" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" NAME="RD_REQ_READY" SIGIS="undef"/>
+        <PORT DIR="I" NAME="RD_REQ_MEM_WE" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="9" NAME="RD_REQ_MEM_ADDR" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="31" NAME="RD_REQ_MEM_RDATA" RIGHT="0" SIGIS="undef"/>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="fmrv32im_core_dbussel_C_MEM_BUS" NAME="D_MEM_BUS" TYPE="TARGET" VLNV="user.org:user:MEM_BUS:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="MEM_WAIT" PHYSICAL="D_MEM_WAIT"/>
+            <PORTMAP LOGICAL="MEM_ENA" PHYSICAL="D_MEM_ENA"/>
+            <PORTMAP LOGICAL="MEM_WSTB" PHYSICAL="D_MEM_WSTB"/>
+            <PORTMAP LOGICAL="MEM_ADDR" PHYSICAL="D_MEM_ADDR"/>
+            <PORTMAP LOGICAL="MEM_WDATA" PHYSICAL="D_MEM_WDATA"/>
+            <PORTMAP LOGICAL="MEM_RDATA" PHYSICAL="D_MEM_RDATA"/>
+            <PORTMAP LOGICAL="MEM_BADMEM_EXCPT" PHYSICAL="D_MEM_BADMEM_EXCPT"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="fmrv32im_core_fmrv32im_I_MEM_BUS" NAME="I_MEM_BUS" TYPE="TARGET" VLNV="user.org:user:MEM_BUS:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="MEM_WAIT" PHYSICAL="I_MEM_WAIT"/>
+            <PORTMAP LOGICAL="MEM_ENA" PHYSICAL="I_MEM_ENA"/>
+            <PORTMAP LOGICAL="MEM_ADDR" PHYSICAL="I_MEM_ADDR"/>
+            <PORTMAP LOGICAL="MEM_RDATA" PHYSICAL="I_MEM_RDATA"/>
+            <PORTMAP LOGICAL="MEM_BADMEM_EXCPT" PHYSICAL="I_MEM_BADMEM_EXCPT"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="RD_REQ" TYPE="INITIATOR" VLNV="user.org:user:REQ_BUS:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="REQ_START" PHYSICAL="RD_REQ_START"/>
+            <PORTMAP LOGICAL="REQ_ADDR" PHYSICAL="RD_REQ_ADDR"/>
+            <PORTMAP LOGICAL="REQ_LEN" PHYSICAL="RD_REQ_LEN"/>
+            <PORTMAP LOGICAL="REQ_READY" PHYSICAL="RD_REQ_READY"/>
+            <PORTMAP LOGICAL="REQ_MEM_WE" PHYSICAL="RD_REQ_MEM_WE"/>
+            <PORTMAP LOGICAL="REQ_MEM_RDATA" PHYSICAL="RD_REQ_MEM_RDATA"/>
+            <PORTMAP LOGICAL="REQ_MEM_ADDR" PHYSICAL="RD_REQ_MEM_ADDR"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="WR_REQ" TYPE="INITIATOR" VLNV="user.org:user:REQ_BUS:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="REQ_START" PHYSICAL="WR_REQ_START"/>
+            <PORTMAP LOGICAL="REQ_ADDR" PHYSICAL="WR_REQ_ADDR"/>
+            <PORTMAP LOGICAL="REQ_LEN" PHYSICAL="WR_REQ_LEN"/>
+            <PORTMAP LOGICAL="REQ_READY" PHYSICAL="WR_REQ_READY"/>
+            <PORTMAP LOGICAL="REQ_MEM_ADDR" PHYSICAL="WR_REQ_MEM_ADDR"/>
+            <PORTMAP LOGICAL="REQ_MEM_WDATA" PHYSICAL="WR_REQ_MEM_WDATA"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE FULLNAME="/fmrv32im_core/dbussel" HWVERSION="1.0" INSTANCE="fmrv32im_core_dbussel" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="fmrv32im_dbussel" VLNV="user.org:user:fmrv32im_dbussel:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="fmrv32im_artya7_dbussel_upgraded_ipi_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" NAME="D_MEM_WAIT" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_D_MEM_WAIT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_fmrv32im" PORT="D_MEM_WAIT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="D_MEM_ENA" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_D_MEM_ENA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_fmrv32im" PORT="D_MEM_ENA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="D_MEM_WSTB" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_D_MEM_WSTB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_fmrv32im" PORT="D_MEM_WSTB"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="D_MEM_ADDR" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_D_MEM_ADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_fmrv32im" PORT="D_MEM_ADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="D_MEM_WDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_D_MEM_WDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_fmrv32im" PORT="D_MEM_WDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="D_MEM_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_D_MEM_RDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_fmrv32im" PORT="D_MEM_RDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="D_MEM_BADMEM_EXCPT" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_D_MEM_BADMEM_EXCPT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_fmrv32im" PORT="D_MEM_BADMEM_EXCPT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="C_MEM_WAIT" SIGIS="undef" SIGNAME="fmrv32im_core_cache_D_MEM_WAIT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_cache" PORT="D_MEM_WAIT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="C_MEM_ENA" SIGIS="undef" SIGNAME="fmrv32im_core_cache_D_MEM_ENA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_cache" PORT="D_MEM_ENA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="C_MEM_WSTB" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_cache_D_MEM_WSTB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_cache" PORT="D_MEM_WSTB"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="C_MEM_ADDR" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_cache_D_MEM_ADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_cache" PORT="D_MEM_ADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="C_MEM_WDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_cache_D_MEM_WDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_cache" PORT="D_MEM_WDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="C_MEM_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_cache_D_MEM_RDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_cache" PORT="D_MEM_RDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="C_MEM_BADMEM_EXCPT" SIGIS="undef" SIGNAME="fmrv32im_core_cache_D_MEM_BADMEM_EXCPT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_cache" PORT="D_MEM_BADMEM_EXCPT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="PERIPHERAL_BUS_WAIT" SIGIS="undef" SIGNAME="axi_lite_master_BUS_WAIT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="BUS_WAIT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="PERIPHERAL_BUS_ENA" SIGIS="undef" SIGNAME="axi_lite_master_BUS_ENA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="BUS_ENA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="PERIPHERAL_BUS_WSTB" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_BUS_WSTB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="BUS_WSTB"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="PERIPHERAL_BUS_ADDR" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_BUS_ADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="BUS_ADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="PERIPHERAL_BUS_WDATA" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_BUS_WDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="BUS_WDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="PERIPHERAL_BUS_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_BUS_RDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="BUS_RDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="PLIC_BUS_WE" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_PLIC_BUS_WE">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_plic" PORT="BUS_WE"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="PLIC_BUS_ADDR" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_PLIC_BUS_ADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_plic" PORT="BUS_ADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="PLIC_BUS_WDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_PLIC_BUS_WDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_plic" PORT="BUS_WDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="PLIC_BUS_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_PLIC_BUS_RDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_plic" PORT="BUS_RDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="TIMER_BUS_WE" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_TIMER_BUS_WE">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_timer" PORT="BUS_WE"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="TIMER_BUS_ADDR" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_TIMER_BUS_ADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_timer" PORT="BUS_ADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="TIMER_BUS_WDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_TIMER_BUS_WDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_timer" PORT="BUS_WDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="TIMER_BUS_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_TIMER_BUS_RDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_timer" PORT="BUS_RDATA"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="fmrv32im_core_fmrv32im_D_MEM_BUS" NAME="D_MEM_BUS" TYPE="TARGET" VLNV="user.org:user:MEM_BUS:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="MEM_WAIT" PHYSICAL="D_MEM_WAIT"/>
+            <PORTMAP LOGICAL="MEM_ENA" PHYSICAL="D_MEM_ENA"/>
+            <PORTMAP LOGICAL="MEM_WSTB" PHYSICAL="D_MEM_WSTB"/>
+            <PORTMAP LOGICAL="MEM_ADDR" PHYSICAL="D_MEM_ADDR"/>
+            <PORTMAP LOGICAL="MEM_WDATA" PHYSICAL="D_MEM_WDATA"/>
+            <PORTMAP LOGICAL="MEM_RDATA" PHYSICAL="D_MEM_RDATA"/>
+            <PORTMAP LOGICAL="MEM_BADMEM_EXCPT" PHYSICAL="D_MEM_BADMEM_EXCPT"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="fmrv32im_core_dbussel_C_MEM_BUS" NAME="C_MEM_BUS" TYPE="INITIATOR" VLNV="user.org:user:MEM_BUS:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="MEM_WAIT" PHYSICAL="C_MEM_WAIT"/>
+            <PORTMAP LOGICAL="MEM_ENA" PHYSICAL="C_MEM_ENA"/>
+            <PORTMAP LOGICAL="MEM_WSTB" PHYSICAL="C_MEM_WSTB"/>
+            <PORTMAP LOGICAL="MEM_ADDR" PHYSICAL="C_MEM_ADDR"/>
+            <PORTMAP LOGICAL="MEM_WDATA" PHYSICAL="C_MEM_WDATA"/>
+            <PORTMAP LOGICAL="MEM_RDATA" PHYSICAL="C_MEM_RDATA"/>
+            <PORTMAP LOGICAL="MEM_BADMEM_EXCPT" PHYSICAL="C_MEM_BADMEM_EXCPT"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="fmrv32im_core_dbussel_PLIC" NAME="PLIC" TYPE="INITIATOR" VLNV="user.org:user:SYS_BUS:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="BUS_WE" PHYSICAL="PLIC_BUS_WE"/>
+            <PORTMAP LOGICAL="BUS_ADDR" PHYSICAL="PLIC_BUS_ADDR"/>
+            <PORTMAP LOGICAL="BUS_WDATA" PHYSICAL="PLIC_BUS_WDATA"/>
+            <PORTMAP LOGICAL="BUS_RDATA" PHYSICAL="PLIC_BUS_RDATA"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="fmrv32im_core_dbussel_TIMER" NAME="TIMER" TYPE="INITIATOR" VLNV="user.org:user:SYS_BUS:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="BUS_WE" PHYSICAL="TIMER_BUS_WE"/>
+            <PORTMAP LOGICAL="BUS_ADDR" PHYSICAL="TIMER_BUS_ADDR"/>
+            <PORTMAP LOGICAL="BUS_WDATA" PHYSICAL="TIMER_BUS_WDATA"/>
+            <PORTMAP LOGICAL="BUS_RDATA" PHYSICAL="TIMER_BUS_RDATA"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="fmrv32im_core_dbussel_PERIPHERAL" NAME="PERIPHERAL" TYPE="INITIATOR" VLNV="user.org:user:PERIPHERAL_BUS:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="BUS_WAIT" PHYSICAL="PERIPHERAL_BUS_WAIT"/>
+            <PORTMAP LOGICAL="BUS_ENA" PHYSICAL="PERIPHERAL_BUS_ENA"/>
+            <PORTMAP LOGICAL="BUS_WSTB" PHYSICAL="PERIPHERAL_BUS_WSTB"/>
+            <PORTMAP LOGICAL="BUS_ADDR" PHYSICAL="PERIPHERAL_BUS_ADDR"/>
+            <PORTMAP LOGICAL="BUS_WDATA" PHYSICAL="PERIPHERAL_BUS_WDATA"/>
+            <PORTMAP LOGICAL="BUS_RDATA" PHYSICAL="PERIPHERAL_BUS_RDATA"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE FULLNAME="/fmrv32im_core/fmrv32im" HWVERSION="1.0" INSTANCE="fmrv32im_core_fmrv32im" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="fmrv32im" VLNV="user.org:user:fmrv32im:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="MADD33_ADDON" VALUE="0"/>
+        <PARAMETER NAME="Component_Name" VALUE="fmrv32im_artya7_fmrv32im_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="RST_N" SIGIS="rst" SIGNAME="High_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="High" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="CLK" SIGIS="clk" SIGNAME="External_Ports_CLK100MHZ">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="CLK100MHZ"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="I_MEM_WAIT" SIGIS="undef" SIGNAME="fmrv32im_core_cache_I_MEM_WAIT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_cache" PORT="I_MEM_WAIT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="I_MEM_ENA" SIGIS="undef" SIGNAME="fmrv32im_core_cache_I_MEM_ENA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_cache" PORT="I_MEM_ENA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="I_MEM_ADDR" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_cache_I_MEM_ADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_cache" PORT="I_MEM_ADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="I_MEM_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_cache_I_MEM_RDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_cache" PORT="I_MEM_RDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="I_MEM_BADMEM_EXCPT" SIGIS="undef" SIGNAME="fmrv32im_core_cache_I_MEM_BADMEM_EXCPT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_cache" PORT="I_MEM_BADMEM_EXCPT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="D_MEM_WAIT" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_D_MEM_WAIT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="D_MEM_WAIT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="D_MEM_ENA" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_D_MEM_ENA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="D_MEM_ENA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="D_MEM_WSTB" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_D_MEM_WSTB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="D_MEM_WSTB"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="D_MEM_ADDR" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_D_MEM_ADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="D_MEM_ADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="D_MEM_WDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_D_MEM_WDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="D_MEM_WDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="D_MEM_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_D_MEM_RDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="D_MEM_RDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="D_MEM_BADMEM_EXCPT" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_D_MEM_BADMEM_EXCPT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="D_MEM_BADMEM_EXCPT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="EXT_INTERRUPT" SENSITIVITY="LEVEL_HIGH" SIGIS="INTERRUPT" SIGNAME="fmrv32im_core_plic_INT_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_plic" PORT="INT_OUT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="TIMER_EXPIRED" SIGIS="undef" SIGNAME="fmrv32im_core_timer_EXPIRED">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_timer" PORT="EXPIRED"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="fmrv32im_core_fmrv32im_I_MEM_BUS" NAME="I_MEM_BUS" TYPE="INITIATOR" VLNV="user.org:user:MEM_BUS:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="MEM_WAIT" PHYSICAL="I_MEM_WAIT"/>
+            <PORTMAP LOGICAL="MEM_ENA" PHYSICAL="I_MEM_ENA"/>
+            <PORTMAP LOGICAL="MEM_ADDR" PHYSICAL="I_MEM_ADDR"/>
+            <PORTMAP LOGICAL="MEM_RDATA" PHYSICAL="I_MEM_RDATA"/>
+            <PORTMAP LOGICAL="MEM_BADMEM_EXCPT" PHYSICAL="I_MEM_BADMEM_EXCPT"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="fmrv32im_core_fmrv32im_D_MEM_BUS" NAME="D_MEM_BUS" TYPE="INITIATOR" VLNV="user.org:user:MEM_BUS:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="MEM_WAIT" PHYSICAL="D_MEM_WAIT"/>
+            <PORTMAP LOGICAL="MEM_ENA" PHYSICAL="D_MEM_ENA"/>
+            <PORTMAP LOGICAL="MEM_WSTB" PHYSICAL="D_MEM_WSTB"/>
+            <PORTMAP LOGICAL="MEM_ADDR" PHYSICAL="D_MEM_ADDR"/>
+            <PORTMAP LOGICAL="MEM_WDATA" PHYSICAL="D_MEM_WDATA"/>
+            <PORTMAP LOGICAL="MEM_RDATA" PHYSICAL="D_MEM_RDATA"/>
+            <PORTMAP LOGICAL="MEM_BADMEM_EXCPT" PHYSICAL="D_MEM_BADMEM_EXCPT"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE FULLNAME="/fmrv32im_core/plic" HWVERSION="1.0" INSTANCE="fmrv32im_core_plic" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="fmrv32im_plic" VLNV="user.org:user:fmrv32im_plic:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="fmrv32im_artya7_fmrv32im_plic_0_1"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="RST_N" SIGIS="rst" SIGNAME="High_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="High" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="CLK" SIGIS="clk" SIGNAME="External_Ports_CLK100MHZ">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="CLK100MHZ"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="BUS_WE" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_PLIC_BUS_WE">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="PLIC_BUS_WE"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="BUS_ADDR" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_PLIC_BUS_ADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="PLIC_BUS_ADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="BUS_WDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_PLIC_BUS_WDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="PLIC_BUS_WDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="BUS_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_PLIC_BUS_RDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="PLIC_BUS_RDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="INT_IN" RIGHT="0" SIGIS="undef" SIGNAME="concat_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="concat" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="INT_OUT" SIGIS="undef" SIGNAME="fmrv32im_core_plic_INT_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_fmrv32im" PORT="EXT_INTERRUPT"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="fmrv32im_core_dbussel_PLIC" NAME="SYS_BUS" TYPE="TARGET" VLNV="user.org:user:SYS_BUS:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="BUS_WE" PHYSICAL="BUS_WE"/>
+            <PORTMAP LOGICAL="BUS_ADDR" PHYSICAL="BUS_ADDR"/>
+            <PORTMAP LOGICAL="BUS_WDATA" PHYSICAL="BUS_WDATA"/>
+            <PORTMAP LOGICAL="BUS_RDATA" PHYSICAL="BUS_RDATA"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE FULLNAME="/fmrv32im_core/timer" HWVERSION="1.0" INSTANCE="fmrv32im_core_timer" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="fmrv32im_timer" VLNV="user.org:user:fmrv32im_timer:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="fmrv32im_artya7_fmrv32im_timer_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="RST_N" SIGIS="rst" SIGNAME="High_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="High" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="CLK" SIGIS="clk" SIGNAME="External_Ports_CLK100MHZ">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="CLK100MHZ"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="BUS_WE" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_TIMER_BUS_WE">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="TIMER_BUS_WE"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="BUS_ADDR" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_TIMER_BUS_ADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="TIMER_BUS_ADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="BUS_WDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_TIMER_BUS_WDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="TIMER_BUS_WDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="BUS_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="fmrv32im_core_dbussel_TIMER_BUS_RDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_dbussel" PORT="TIMER_BUS_RDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="EXPIRED" SIGIS="undef" SIGNAME="fmrv32im_core_timer_EXPIRED">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fmrv32im_core_fmrv32im" PORT="TIMER_EXPIRED"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="fmrv32im_core_dbussel_TIMER" NAME="SYS_BUS" TYPE="TARGET" VLNV="user.org:user:SYS_BUS:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="BUS_WE" PHYSICAL="BUS_WE"/>
+            <PORTMAP LOGICAL="BUS_ADDR" PHYSICAL="BUS_ADDR"/>
+            <PORTMAP LOGICAL="BUS_WDATA" PHYSICAL="BUS_WDATA"/>
+            <PORTMAP LOGICAL="BUS_RDATA" PHYSICAL="BUS_RDATA"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE FULLNAME="/uart_and_gpio" HWVERSION="1.0" INSTANCE="uart_and_gpio" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="fmrv32im_axis_uart" VLNV="user.org:user:fmrv32im_axis_uart:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="fmrv32im_artya7_uart_and_gpio_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="RST_N" SIGIS="rst" SIGNAME="High_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="High" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="CLK" SIGIS="clk" SIGNAME="External_Ports_CLK100MHZ">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="CLK100MHZ"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="S_AXI_AWADDR" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_AWADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_AWADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="S_AXI_AWCACHE" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_AWCACHE">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_AWCACHE"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="2" NAME="S_AXI_AWPROT" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_AWPROT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_AWPROT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S_AXI_AWVALID" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_AWVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_AWVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="S_AXI_AWREADY" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_AWREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_AWREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="S_AXI_WDATA" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_WDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_WDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="S_AXI_WSTRB" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_WSTRB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_WSTRB"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S_AXI_WVALID" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_WVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_WVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="S_AXI_WREADY" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_WREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_WREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="S_AXI_BVALID" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_BVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_BVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S_AXI_BREADY" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_BREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_BREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="S_AXI_BRESP" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_BRESP">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_BRESP"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="S_AXI_ARADDR" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_ARADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_ARADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="S_AXI_ARCACHE" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_ARCACHE">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_ARCACHE"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="2" NAME="S_AXI_ARPROT" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_ARPROT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_ARPROT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S_AXI_ARVALID" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_ARVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_ARVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="S_AXI_ARREADY" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_ARREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_ARREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="S_AXI_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_RDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_RDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="S_AXI_RRESP" RIGHT="0" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_RRESP">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_RRESP"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="S_AXI_RVALID" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_RVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_RVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S_AXI_RREADY" SIGIS="undef" SIGNAME="axi_lite_master_M_AXI_RREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_lite_master" PORT="M_AXI_RREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="RXD" SIGIS="undef"/>
+        <PORT DIR="O" NAME="TXD" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="31" NAME="GPIO_I" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="31" NAME="GPIO_O" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="31" NAME="GPIO_OT" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" NAME="INTERRUPT" SENSITIVITY="LEVEL_HIGH" SIGIS="INTERRUPT" SIGNAME="uart_and_gpio_INTERRUPT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="concat" PORT="In0"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="axi_lite_master_M_AXI" DATAWIDTH="32" NAME="S_AXI" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
+          <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+          <PARAMETER NAME="PROTOCOL" VALUE="AXI4LITE"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
+          <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="ADDR_WIDTH" VALUE="16"/>
+          <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="ARUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="WUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="RUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="BUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="READ_WRITE_MODE" VALUE="READ_WRITE"/>
+          <PARAMETER NAME="HAS_BURST" VALUE="0"/>
+          <PARAMETER NAME="HAS_LOCK" VALUE="0"/>
+          <PARAMETER NAME="HAS_PROT" VALUE="1"/>
+          <PARAMETER NAME="HAS_CACHE" VALUE="1"/>
+          <PARAMETER NAME="HAS_QOS" VALUE="0"/>
+          <PARAMETER NAME="HAS_REGION" VALUE="0"/>
+          <PARAMETER NAME="HAS_WSTRB" VALUE="1"/>
+          <PARAMETER NAME="HAS_BRESP" VALUE="1"/>
+          <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
+          <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
+          <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="1"/>
+          <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="1"/>
+          <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="1"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="fmrv32im_artya7_CLK100MHZ"/>
+          <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
+          <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
+          <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
+          <PARAMETER NAME="WUSER_BITS_PER_BYTE" VALUE="0"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="AWADDR" PHYSICAL="S_AXI_AWADDR"/>
+            <PORTMAP LOGICAL="AWCACHE" PHYSICAL="S_AXI_AWCACHE"/>
+            <PORTMAP LOGICAL="AWPROT" PHYSICAL="S_AXI_AWPROT"/>
+            <PORTMAP LOGICAL="AWVALID" PHYSICAL="S_AXI_AWVALID"/>
+            <PORTMAP LOGICAL="AWREADY" PHYSICAL="S_AXI_AWREADY"/>
+            <PORTMAP LOGICAL="WDATA" PHYSICAL="S_AXI_WDATA"/>
+            <PORTMAP LOGICAL="WSTRB" PHYSICAL="S_AXI_WSTRB"/>
+            <PORTMAP LOGICAL="WVALID" PHYSICAL="S_AXI_WVALID"/>
+            <PORTMAP LOGICAL="WREADY" PHYSICAL="S_AXI_WREADY"/>
+            <PORTMAP LOGICAL="BRESP" PHYSICAL="S_AXI_BRESP"/>
+            <PORTMAP LOGICAL="BVALID" PHYSICAL="S_AXI_BVALID"/>
+            <PORTMAP LOGICAL="BREADY" PHYSICAL="S_AXI_BREADY"/>
+            <PORTMAP LOGICAL="ARADDR" PHYSICAL="S_AXI_ARADDR"/>
+            <PORTMAP LOGICAL="ARCACHE" PHYSICAL="S_AXI_ARCACHE"/>
+            <PORTMAP LOGICAL="ARPROT" PHYSICAL="S_AXI_ARPROT"/>
+            <PORTMAP LOGICAL="ARVALID" PHYSICAL="S_AXI_ARVALID"/>
+            <PORTMAP LOGICAL="ARREADY" PHYSICAL="S_AXI_ARREADY"/>
+            <PORTMAP LOGICAL="RDATA" PHYSICAL="S_AXI_RDATA"/>
+            <PORTMAP LOGICAL="RRESP" PHYSICAL="S_AXI_RRESP"/>
+            <PORTMAP LOGICAL="RVALID" PHYSICAL="S_AXI_RVALID"/>
+            <PORTMAP LOGICAL="RREADY" PHYSICAL="S_AXI_RREADY"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="uart_and_gpio_GPIO" NAME="GPIO" TYPE="INITIATOR" VLNV="user.org:user:GPIO:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="O" PHYSICAL="GPIO_O"/>
+            <PORTMAP LOGICAL="I" PHYSICAL="GPIO_I"/>
+            <PORTMAP LOGICAL="OT" PHYSICAL="GPIO_OT"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="uart_and_gpio_UART" NAME="UART" TYPE="INITIATOR" VLNV="user.org:user:UART:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TX" PHYSICAL="TXD"/>
+            <PORTMAP LOGICAL="RX" PHYSICAL="RXD"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+  </MODULES>
+
+</EDKSYSTEM>

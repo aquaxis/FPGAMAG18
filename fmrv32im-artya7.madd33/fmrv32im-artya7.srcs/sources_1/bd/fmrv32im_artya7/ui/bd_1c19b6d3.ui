@@ -1,0 +1,31 @@
+{
+   guistr: "# # String gsaved with Nlview 6.6.8  2016-12-21 bk=1.3817 VDI=40 GEI=35 GUI=JA:1.6
+#  -string -flagsOSRD
+preplace port RST_N -pg 1 -y 250 -defaultsOSRD
+preplace port CLK -pg 1 -y 270 -defaultsOSRD
+preplace port WR_REQ -pg 1 -y 90 -defaultsOSRD
+preplace port PERIPHERAL -pg 1 -y 420 -defaultsOSRD
+preplace port RD_REQ -pg 1 -y 70 -defaultsOSRD
+preplace portBus INT_IN -pg 1 -y 230 -defaultsOSRD
+preplace inst plic -pg 1 -lvl 3 -y 220 -defaultsOSRD
+preplace inst timer -pg 1 -lvl 3 -y 350 -defaultsOSRD
+preplace inst dbussel -pg 1 -lvl 2 -y 320 -defaultsOSRD
+preplace inst fmrv32im -pg 1 -lvl 1 -y 310 -defaultsOSRD
+preplace inst cache -pg 1 -lvl 3 -y 80 -defaultsOSRD
+preplace netloc Conn1 1 3 1 NJ
+preplace netloc dbussel_upgraded_ipi_PLIC 1 2 1 630
+preplace netloc Conn2 1 3 1 NJ
+preplace netloc dbussel_upgraded_ipi_C_MEM_BUS 1 2 1 590
+preplace netloc fmrv32im_plic_0_INT_OUT 1 0 4 20 430 NJ 430 NJ 430 900
+preplace netloc RST_N_1 1 0 3 10 410 NJ 410 610
+preplace netloc CLK_1 1 0 3 0 400 NJ 400 620
+preplace netloc Conn3 1 2 2 590J 420 NJ
+preplace netloc INT_IN_1 1 0 3 NJ 230 NJ 230 600J
+preplace netloc dbussel_upgraded_ipi_TIMER 1 2 1 N
+preplace netloc fmrv32im_D_MEM_BUS 1 1 1 N
+preplace netloc fmrv32im_I_MEM_BUS 1 1 2 310 70 NJ
+preplace netloc timer_EXPIRED 1 0 4 30 440 NJ 440 NJ 440 890
+levelinfo -pg 1 -20 170 450 760 920 -top 0 -bot 450
+",
+}
+0

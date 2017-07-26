@@ -1,0 +1,111 @@
+
+rv32ui-p-lui:     ファイル形式 elf32-littleriscv
+
+
+セクション .text.init の逆アセンブル:
+
+00000000 <_start>:
+   0:	04c0006f          	j	4c <reset_vector>
+
+00000004 <trap_vector>:
+   4:	34202f73          	csrr	t5,mcause
+   8:	00800f93          	li	t6,8
+   c:	03ff0a63          	beq	t5,t6,40 <write_tohost>
+  10:	00900f93          	li	t6,9
+  14:	03ff0663          	beq	t5,t6,40 <write_tohost>
+  18:	00b00f93          	li	t6,11
+  1c:	03ff0263          	beq	t5,t6,40 <write_tohost>
+  20:	00000f17          	auipc	t5,0x0
+  24:	fe0f0f13          	addi	t5,t5,-32 # 0 <_start>
+  28:	000f0463          	beqz	t5,30 <trap_vector+0x2c>
+  2c:	000f0067          	jr	t5
+  30:	34202f73          	csrr	t5,mcause
+  34:	000f5463          	bgez	t5,3c <handle_exception>
+  38:	0040006f          	j	3c <handle_exception>
+
+0000003c <handle_exception>:
+  3c:	539e6e13          	ori	t3,t3,1337
+
+00000040 <write_tohost>:
+  40:	00000f17          	auipc	t5,0x0
+  44:	7dcf2023          	sw	t3,1984(t5) # 800 <tohost>
+  48:	ff9ff06f          	j	40 <write_tohost>
+
+0000004c <reset_vector>:
+  4c:	f1402573          	csrr	a0,mhartid
+  50:	00051063          	bnez	a0,50 <reset_vector+0x4>
+  54:	30102573          	csrr	a0,misa
+  58:	00055863          	bgez	a0,68 <reset_vector+0x1c>
+  5c:	0ff0000f          	fence
+  60:	00100e13          	li	t3,1
+  64:	00000073          	ecall
+  68:	00000e13          	li	t3,0
+  6c:	00000297          	auipc	t0,0x0
+  70:	f9828293          	addi	t0,t0,-104 # 4 <trap_vector>
+  74:	30529073          	csrw	mtvec,t0
+  78:	30205073          	csrwi	medeleg,0
+  7c:	30305073          	csrwi	mideleg,0
+  80:	30405073          	csrwi	mie,0
+  84:	00000297          	auipc	t0,0x0
+  88:	f7c28293          	addi	t0,t0,-132 # 0 <_start>
+  8c:	00028c63          	beqz	t0,a4 <reset_vector+0x58>
+  90:	10529073          	csrw	stvec,t0
+  94:	1ab00293          	li	t0,427
+  98:	30229073          	csrw	medeleg,t0
+  9c:	30202373          	csrr	t1,medeleg
+  a0:	f8629ee3          	bne	t0,t1,3c <handle_exception>
+  a4:	30005073          	csrwi	mstatus,0
+  a8:	00000297          	auipc	t0,0x0
+  ac:	01428293          	addi	t0,t0,20 # bc <test_2>
+  b0:	34129073          	csrw	mepc,t0
+  b4:	f1402573          	csrr	a0,mhartid
+  b8:	30200073          	mret
+
+000000bc <test_2>:
+  bc:	000000b7          	lui	ra,0x0
+  c0:	00000e93          	li	t4,0
+  c4:	00200e13          	li	t3,2
+  c8:	05d09a63          	bne	ra,t4,11c <fail>
+
+000000cc <test_3>:
+  cc:	fffff0b7          	lui	ra,0xfffff
+  d0:	4010d093          	srai	ra,ra,0x1
+  d4:	80000e93          	li	t4,-2048
+  d8:	00300e13          	li	t3,3
+  dc:	05d09063          	bne	ra,t4,11c <fail>
+
+000000e0 <test_4>:
+  e0:	7ffff0b7          	lui	ra,0x7ffff
+  e4:	4140d093          	srai	ra,ra,0x14
+  e8:	7ff00e93          	li	t4,2047
+  ec:	00400e13          	li	t3,4
+  f0:	03d09663          	bne	ra,t4,11c <fail>
+
+000000f4 <test_5>:
+  f4:	800000b7          	lui	ra,0x80000
+  f8:	4140d093          	srai	ra,ra,0x14
+  fc:	80000e93          	li	t4,-2048
+ 100:	00500e13          	li	t3,5
+ 104:	01d09c63          	bne	ra,t4,11c <fail>
+
+00000108 <test_6>:
+ 108:	80000037          	lui	zero,0x80000
+ 10c:	00000e93          	li	t4,0
+ 110:	00600e13          	li	t3,6
+ 114:	01d01463          	bne	zero,t4,11c <fail>
+ 118:	01c01c63          	bne	zero,t3,130 <pass>
+
+0000011c <fail>:
+ 11c:	0ff0000f          	fence
+ 120:	000e0063          	beqz	t3,120 <fail+0x4>
+ 124:	001e1e13          	slli	t3,t3,0x1
+ 128:	001e6e13          	ori	t3,t3,1
+ 12c:	00000073          	ecall
+
+00000130 <pass>:
+ 130:	0ff0000f          	fence
+ 134:	00100e13          	li	t3,1
+ 138:	00000073          	ecall
+ 13c:	c0001073          	unimp
+ 140:	0000                	unimp
+ 142:	0000                	unimp

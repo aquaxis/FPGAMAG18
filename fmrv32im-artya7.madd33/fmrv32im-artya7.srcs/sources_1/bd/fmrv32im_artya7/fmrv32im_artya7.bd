@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0xC0140BED60BD8BC1" bd:device="xc7a35ticsg324-1L" bd:isValidated="true" bd:synthFlowMode="Singular" bd:tool_version="2017.2" bd:top="fmrv32im_artya7" bd:version="1.00.a">
+
+  <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
+    <spirit:vendor>xilinx.com</spirit:vendor>
+    <spirit:library>BlockDiagram</spirit:library>
+    <spirit:name>fmrv32im_artya7</spirit:name>
+    <spirit:version>1.00.a</spirit:version>
+    <spirit:parameters>
+      <spirit:parameter>
+        <spirit:name>isTop</spirit:name>
+        <spirit:value spirit:format="bool" spirit:resolve="immediate">true</spirit:value>
+      </spirit:parameter>
+    </spirit:parameters>
+    <spirit:busInterfaces>
+      <spirit:busInterface>
+        <spirit:name>GPIO</spirit:name>
+        <spirit:master/>
+        <spirit:busType spirit:library="user" spirit:name="GPIO" spirit:vendor="user.org" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="user" spirit:name="GPIO_rtl" spirit:vendor="user.org" spirit:version="1.0"/>
+      </spirit:busInterface>
+      <spirit:busInterface>
+        <spirit:name>UART</spirit:name>
+        <spirit:master/>
+        <spirit:busType spirit:library="user" spirit:name="UART" spirit:vendor="user.org" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="user" spirit:name="UART_rtl" spirit:vendor="user.org" spirit:version="1.0"/>
+      </spirit:busInterface>
+      <spirit:busInterface>
+        <spirit:name>CLK.CLK100MHZ</spirit:name>
+        <spirit:displayName>Clk</spirit:displayName>
+        <spirit:description>Clock</spirit:description>
+        <spirit:busType spirit:library="signal" spirit:name="clock" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="signal" spirit:name="clock_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:slave/>
+        <spirit:portMaps>
+          <spirit:portMap>
+            <spirit:logicalPort>
+              <spirit:name>CLK</spirit:name>
+            </spirit:logicalPort>
+            <spirit:physicalPort>
+              <spirit:name>CLK100MHZ</spirit:name>
+            </spirit:physicalPort>
+          </spirit:portMap>
+        </spirit:portMaps>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>FREQ_HZ</spirit:name>
+            <spirit:value>100000000</spirit:value>
+            <spirit:vendorExtensions>
+              <bd:configElementInfos>
+                <bd:configElementInfo bd:valueSource="default"/>
+              </bd:configElementInfos>
+            </spirit:vendorExtensions>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>PHASE</spirit:name>
+            <spirit:value>0.000</spirit:value>
+            <spirit:vendorExtensions>
+              <bd:configElementInfos>
+                <bd:configElementInfo bd:valueSource="default"/>
+              </bd:configElementInfos>
+            </spirit:vendorExtensions>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>CLK_DOMAIN</spirit:name>
+            <spirit:value>fmrv32im_artya7_CLK100MHZ</spirit:value>
+            <spirit:vendorExtensions>
+              <bd:configElementInfos>
+                <bd:configElementInfo bd:valueSource="default"/>
+              </bd:configElementInfos>
+            </spirit:vendorExtensions>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:busInterface>
+    </spirit:busInterfaces>
+    <spirit:model>
+      <spirit:views>
+        <spirit:view>
+          <spirit:name>BlockDiagram</spirit:name>
+          <spirit:envIdentifier>:vivado.xilinx.com:</spirit:envIdentifier>
+          <spirit:hierarchyRef spirit:library="BlockDiagram" spirit:name="fmrv32im_artya7_imp" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
+        </spirit:view>
+      </spirit:views>
+      <spirit:ports>
+        <spirit:port>
+          <spirit:name>CLK100MHZ</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+      </spirit:ports>
+    </spirit:model>
+  </spirit:component>
+
+  <spirit:design xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
+    <spirit:vendor>xilinx.com</spirit:vendor>
+    <spirit:library>BlockDiagram</spirit:library>
+    <spirit:name>fmrv32im_artya7_imp</spirit:name>
+    <spirit:version>1.00.a</spirit:version>
+    <spirit:componentInstances>
+      <spirit:componentInstance>
+        <spirit:instanceName>concat</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="xlconcat" spirit:vendor="xilinx.com" spirit:version="2.1"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">fmrv32im_artya7_xlconcat_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="NUM_PORTS">1</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>High</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="xlconstant" spirit:vendor="xilinx.com" spirit:version="1.1"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">fmrv32im_artya7_xlconstant_0_0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>fmrv32im_core</spirit:instanceName>
+        <spirit:componentRef spirit:library="BlockDiagram/fmrv32im_artya7_imp" spirit:name="fmrv32im_core" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>axi_lite_master</spirit:instanceName>
+        <spirit:componentRef spirit:library="user" spirit:name="fmrv32im_axilm" spirit:vendor="user.org" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">fmrv32im_artya7_fmrv32im_axilm_0_0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>uart</spirit:instanceName>
+        <spirit:componentRef spirit:library="user" spirit:name="fmrv32im_axis_uart" spirit:vendor="user.org" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">fmrv32im_artya7_fmrv32im_axis_uart_0_1</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+    </spirit:componentInstances>
+    <spirit:interconnections>
+      <spirit:interconnection>
+        <spirit:name>axilm_M_AXI</spirit:name>
+        <spirit:activeInterface spirit:busRef="M_AXI" spirit:componentRef="axi_lite_master"/>
+        <spirit:activeInterface spirit:busRef="S_AXI" spirit:componentRef="uart"/>
+      </spirit:interconnection>
+      <spirit:interconnection>
+        <spirit:name>fmrv32im_core_PERIPHERAL</spirit:name>
+        <spirit:activeInterface spirit:busRef="PERIPHERAL_BUS" spirit:componentRef="axi_lite_master"/>
+        <spirit:activeInterface spirit:busRef="PERIPHERAL" spirit:componentRef="fmrv32im_core"/>
+      </spirit:interconnection>
+    </spirit:interconnections>
+    <spirit:adHocConnections>
+      <spirit:adHocConnection>
+        <spirit:name>High_dout</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="High" spirit:portRef="dout"/>
+        <spirit:internalPortReference spirit:componentRef="axi_lite_master" spirit:portRef="RST_N"/>
+        <spirit:internalPortReference spirit:componentRef="uart" spirit:portRef="RST_N"/>
+        <spirit:internalPortReference spirit:componentRef="fmrv32im_core" spirit:portRef="RST_N"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>CLK_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="CLK100MHZ"/>
+        <spirit:internalPortReference spirit:componentRef="axi_lite_master" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="uart" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="fmrv32im_core" spirit:portRef="CLK"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>fmrv32im_axis_uart_0_INTERRUPT</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="uart" spirit:portRef="INTERRUPT"/>
+        <spirit:internalPortReference spirit:componentRef="concat" spirit:portRef="In0"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>concat_dout</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="concat" spirit:portRef="dout"/>
+        <spirit:internalPortReference spirit:componentRef="fmrv32im_core" spirit:portRef="INT_IN"/>
+      </spirit:adHocConnection>
+    </spirit:adHocConnections>
+    <spirit:hierConnections>
+      <spirit:hierConnection spirit:interfaceRef="GPIO/fmrv32im_axis_uart_0_GPIO">
+        <spirit:activeInterface spirit:busRef="GPIO" spirit:componentRef="uart"/>
+      </spirit:hierConnection>
+      <spirit:hierConnection spirit:interfaceRef="UART/fmrv32im_axis_uart_0_UART">
+        <spirit:activeInterface spirit:busRef="UART" spirit:componentRef="uart"/>
+      </spirit:hierConnection>
+    </spirit:hierConnections>
+  </spirit:design>
+
+  <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
+    <spirit:vendor>xilinx.com</spirit:vendor>
+    <spirit:library>BlockDiagram/fmrv32im_artya7_imp</spirit:library>
+    <spirit:name>fmrv32im_core</spirit:name>
+    <spirit:version>1.00.a</spirit:version>
+    <spirit:busInterfaces>
+      <spirit:busInterface>
+        <spirit:name>RD_REQ</spirit:name>
+        <spirit:master/>
+        <spirit:busType spirit:library="user" spirit:name="REQ_BUS" spirit:vendor="user.org" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="user" spirit:name="REQ_BUS_rtl" spirit:vendor="user.org" spirit:version="1.0"/>
+      </spirit:busInterface>
+      <spirit:busInterface>
+        <spirit:name>WR_REQ</spirit:name>
+        <spirit:master/>
+        <spirit:busType spirit:library="user" spirit:name="REQ_BUS" spirit:vendor="user.org" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="user" spirit:name="REQ_BUS_rtl" spirit:vendor="user.org" spirit:version="1.0"/>
+      </spirit:busInterface>
+      <spirit:busInterface>
+        <spirit:name>PERIPHERAL</spirit:name>
+        <spirit:master/>
+        <spirit:busType spirit:library="user" spirit:name="PERIPHERAL_BUS" spirit:vendor="user.org" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="user" spirit:name="PERIPHERAL_BUS_rtl" spirit:vendor="user.org" spirit:version="1.0"/>
+      </spirit:busInterface>
+      <spirit:busInterface>
+        <spirit:name>CLK.CLK</spirit:name>
+        <spirit:displayName>Clk</spirit:displayName>
+        <spirit:description>Clock</spirit:description>
+        <spirit:busType spirit:library="signal" spirit:name="clock" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="signal" spirit:name="clock_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:slave/>
+        <spirit:portMaps>
+          <spirit:portMap>
+            <spirit:logicalPort>
+              <spirit:name>CLK</spirit:name>
+            </spirit:logicalPort>
+            <spirit:physicalPort>
+              <spirit:name>CLK</spirit:name>
+            </spirit:physicalPort>
+          </spirit:portMap>
+        </spirit:portMaps>
+      </spirit:busInterface>
+      <spirit:busInterface>
+        <spirit:name>RST.RST_N</spirit:name>
+        <spirit:displayName>Reset</spirit:displayName>
+        <spirit:description>Reset</spirit:description>
+        <spirit:busType spirit:library="signal" spirit:name="reset" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="signal" spirit:name="reset_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:slave/>
+        <spirit:portMaps>
+          <spirit:portMap>
+            <spirit:logicalPort>
+              <spirit:name>RST</spirit:name>
+            </spirit:logicalPort>
+            <spirit:physicalPort>
+              <spirit:name>RST_N</spirit:name>
+            </spirit:physicalPort>
+          </spirit:portMap>
+        </spirit:portMaps>
+      </spirit:busInterface>
+    </spirit:busInterfaces>
+    <spirit:model>
+      <spirit:views>
+        <spirit:view>
+          <spirit:name>BlockDiagram</spirit:name>
+          <spirit:envIdentifier>:vivado.xilinx.com:</spirit:envIdentifier>
+          <spirit:hierarchyRef spirit:library="BlockDiagram/fmrv32im_artya7_imp" spirit:name="fmrv32im_core_imp" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
+        </spirit:view>
+      </spirit:views>
+      <spirit:ports>
+        <spirit:port>
+          <spirit:name>CLK</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>RST_N</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>INT_IN</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+            <spirit:vector>
+              <spirit:left>0</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+      </spirit:ports>
+    </spirit:model>
+  </spirit:component>
+
+  <spirit:design xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
+    <spirit:vendor>xilinx.com</spirit:vendor>
+    <spirit:library>BlockDiagram/fmrv32im_artya7_imp</spirit:library>
+    <spirit:name>fmrv32im_core_imp</spirit:name>
+    <spirit:version>1.00.a</spirit:version>
+    <spirit:componentInstances>
+      <spirit:componentInstance>
+        <spirit:instanceName>dbussel</spirit:instanceName>
+        <spirit:componentRef spirit:library="user" spirit:name="fmrv32im_dbussel" spirit:vendor="user.org" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">fmrv32im_artya7_dbussel_upgraded_ipi_0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>plic</spirit:instanceName>
+        <spirit:componentRef spirit:library="user" spirit:name="fmrv32im_plic" spirit:vendor="user.org" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">fmrv32im_artya7_fmrv32im_plic_0_1</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>timer</spirit:instanceName>
+        <spirit:componentRef spirit:library="user" spirit:name="fmrv32im_timer" spirit:vendor="user.org" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">fmrv32im_artya7_fmrv32im_timer_0_0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>cache</spirit:instanceName>
+        <spirit:componentRef spirit:library="user" spirit:name="fmrv32im_cache" spirit:vendor="user.org" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">fmrv32im_artya7_fmrv32im_cache_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="MEM_FILE">/home/hidemi/workspace/FPGAMAG18/FPGA/romdata/artya7.hex</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="OSRAM">0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>fmrv32im</spirit:instanceName>
+        <spirit:componentRef spirit:library="user" spirit:name="fmrv32im" spirit:vendor="user.org" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">fmrv32im_artya7_fmrv32im_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="MADD33_ADDON">1</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+    </spirit:componentInstances>
+    <spirit:interconnections>
+      <spirit:interconnection>
+        <spirit:name>fmrv32im_D_MEM_BUS</spirit:name>
+        <spirit:activeInterface spirit:busRef="D_MEM_BUS" spirit:componentRef="fmrv32im"/>
+        <spirit:activeInterface spirit:busRef="D_MEM_BUS" spirit:componentRef="dbussel"/>
+      </spirit:interconnection>
+      <spirit:interconnection>
+        <spirit:name>fmrv32im_I_MEM_BUS</spirit:name>
+        <spirit:activeInterface spirit:busRef="I_MEM_BUS" spirit:componentRef="fmrv32im"/>
+        <spirit:activeInterface spirit:busRef="I_MEM_BUS" spirit:componentRef="cache"/>
+      </spirit:interconnection>
+      <spirit:interconnection>
+        <spirit:name>dbussel_upgraded_ipi_C_MEM_BUS</spirit:name>
+        <spirit:activeInterface spirit:busRef="D_MEM_BUS" spirit:componentRef="cache"/>
+        <spirit:activeInterface spirit:busRef="C_MEM_BUS" spirit:componentRef="dbussel"/>
+      </spirit:interconnection>
+      <spirit:interconnection>
+        <spirit:name>dbussel_upgraded_ipi_PLIC</spirit:name>
+        <spirit:activeInterface spirit:busRef="PLIC" spirit:componentRef="dbussel"/>
+        <spirit:activeInterface spirit:busRef="SYS_BUS" spirit:componentRef="plic"/>
+      </spirit:interconnection>
+      <spirit:interconnection>
+        <spirit:name>dbussel_upgraded_ipi_TIMER</spirit:name>
+        <spirit:activeInterface spirit:busRef="TIMER" spirit:componentRef="dbussel"/>
+        <spirit:activeInterface spirit:busRef="SYS_BUS" spirit:componentRef="timer"/>
+      </spirit:interconnection>
+    </spirit:interconnections>
+    <spirit:adHocConnections>
+      <spirit:adHocConnection>
+        <spirit:name>timer_EXPIRED</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="timer" spirit:portRef="EXPIRED"/>
+        <spirit:internalPortReference spirit:componentRef="fmrv32im" spirit:portRef="TIMER_EXPIRED"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>CLK_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="plic" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="timer" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="cache" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="fmrv32im" spirit:portRef="CLK"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>RST_N_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="RST_N"/>
+        <spirit:internalPortReference spirit:componentRef="plic" spirit:portRef="RST_N"/>
+        <spirit:internalPortReference spirit:componentRef="timer" spirit:portRef="RST_N"/>
+        <spirit:internalPortReference spirit:componentRef="cache" spirit:portRef="RST_N"/>
+        <spirit:internalPortReference spirit:componentRef="fmrv32im" spirit:portRef="RST_N"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>fmrv32im_plic_0_INT_OUT</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="plic" spirit:portRef="INT_OUT"/>
+        <spirit:internalPortReference spirit:componentRef="fmrv32im" spirit:portRef="EXT_INTERRUPT"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>INT_IN_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="INT_IN"/>
+        <spirit:internalPortReference spirit:componentRef="plic" spirit:portRef="INT_IN"/>
+      </spirit:adHocConnection>
+    </spirit:adHocConnections>
+    <spirit:hierConnections>
+      <spirit:hierConnection spirit:interfaceRef="RD_REQ/Conn1">
+        <spirit:activeInterface spirit:busRef="RD_REQ" spirit:componentRef="cache"/>
+      </spirit:hierConnection>
+      <spirit:hierConnection spirit:interfaceRef="WR_REQ/Conn2">
+        <spirit:activeInterface spirit:busRef="WR_REQ" spirit:componentRef="cache"/>
+      </spirit:hierConnection>
+      <spirit:hierConnection spirit:interfaceRef="PERIPHERAL/Conn3">
+        <spirit:activeInterface spirit:busRef="PERIPHERAL" spirit:componentRef="dbussel"/>
+      </spirit:hierConnection>
+    </spirit:hierConnections>
+  </spirit:design>
+
+  <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
+    <spirit:vendor>user.org</spirit:vendor>
+    <spirit:library>Addressing/axi_lite_master</spirit:library>
+    <spirit:name>fmrv32im_axilm</spirit:name>
+    <spirit:version>1.0</spirit:version>
+    <spirit:addressSpaces>
+      <spirit:addressSpace>
+        <spirit:name>M_AXI</spirit:name>
+        <spirit:range>4G</spirit:range>
+        <spirit:width>32</spirit:width>
+        <spirit:segments>
+          <spirit:segment>
+            <spirit:name>SEG_fmrv32im_axis_uart_0_reg0</spirit:name>
+            <spirit:displayName>/uart/S_AXI/reg0</spirit:displayName>
+            <spirit:addressOffset>0x80000000</spirit:addressOffset>
+            <spirit:range>64K</spirit:range>
+          </spirit:segment>
+        </spirit:segments>
+      </spirit:addressSpace>
+    </spirit:addressSpaces>
+  </spirit:component>
+
+</bd:repository>
