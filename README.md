@@ -1,0 +1,2 @@
+# FPGAMAG18
+FPGA Magazine No.18 - RISC-V
