@@ -1,6 +1,6 @@
 module fmrv32im_axis_uart
   #(
-   parameter RESET_COUNT = 8'd107;
+   parameter RESET_COUNT = 8'd107
   )
   (
     input RST_N,
@@ -428,7 +428,7 @@ module fmrv32im_axis_uart_ctl
 endmodule
 module uartcon_top
   #(
-   parameter RESET_COUNT = 8'd107;
+   parameter RESET_COUNT = 8'd107
   )
   (
    input        rst_n,
@@ -563,7 +563,7 @@ module uartcon_top
 endmodule
 module uartcon_clk
   #(
-   parameter RESET_COUNT = 8'd107;
+   parameter RESET_COUNT = 8'd107
   )
   (
    input  rst_n,
